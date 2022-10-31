@@ -3,37 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <title>Book Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    body{height: 100vh;} 
+    .container{height: 100%;}
+  </style>
 </head>
 <body>
 
-<h2>Books<h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <td>Title</td>
-                <td>Author</td>
-                <td>Added Date</td>
-                <td>Status</td>
-                <td>Conclusion Date</td>
-                <td>Rating</td>
-                <td>Action</td>
-            </tr>
-        </thead>
-        <tbody>
-        <% data.forEach(function(details) { %>
-            <tr>
-                <td><%= details.title %></td>
-                <td><%= details.author %></td>
-                <td><%= details.added_date %></td>
-                <td><%= details.status %></td>
-                <td><%= details.conclusion %></td>
-                <td><%= details.rating %></td>
-                <td><a href="/edit/<%= details._id %>">Edit</a> | <a href="/delete/<%= details._id %>">Delete</a></td>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
+<div class="container d-flex flex-column align-items-center justify-content-center">
+    <div class="row">
+        <div class="col">
+            <table class="table table-dark table-hover text-center">
+                <thead>
+                    <tr>
+                        <td>Title</td>
+                        <td>Author</td>
+                        <td>Added Date</td>
+                        <td>Status</td>
+                        <td>Conclusion Date</td>
+                        <td>Rating</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(details) { %>
+                        <tr>
+                            <td><%= details.title %></td>
+                            <td><%= details.author %></td>
+                            <td><%= details.added_date %></td>
+                            <td><%= details.status %></td>
+                            <td><%= details.conclusion %></td>
+                            <td><%= details.rating %></td>
+                            <td><a class="btn btn-outline-light" href="/edit/<%= details._id %>">Edit</a>&nbsp;<a class="btn btn-outline-danger" href="/delete/<%= details._id %>">Delete</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="d-grid gap-2">
+                <a class="btn btn-outline-primary" href="/">Register new</a>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <button><a href="/">New Book</a></button>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

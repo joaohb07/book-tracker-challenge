@@ -5,34 +5,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>
-        #rating{ width: 135px; display: none; }
-        #currentDate{ width: 135px; display: none; }
+        body{height: 100vh;} 
+        .container{height: 100%; width: 100%;}
+        #rating{ display: none; }
+        #currentDate{ display: none; }
+        #hideLabel{ display: none; }
     </style>
 </head>
 <body>
-    <h2>Edit Book</h2>
-    <% data.forEach(function(details) { %>
-        <form action="/edit/<%= details._id %>" method="POST">
-            <input type="text" value="<%= details.title %>" name="title"/><br/>
-            <input type="text" value="<%= details.author %>" name="author"/><br/>
-            <select name="status" style="width: 146px;" onchange="showRating('rating', this); showConclusionDate('currentDate',this);">
-                <option value="want_to_read">Want to Read</option>
-                <option value="reading">Reading</option>
-                <option value="read">Read</option>
-            </select><br/>
-            <input type="number" id="rating" placeholder="Rating(1 to 5)" value="<%= details.rating %>" name="rating" min="1" max="5">
-            <input type="text" id="currentDate" name="conclusion" readonly="readonly"/>
-            <br/>
-            <button><a href="/show-books">All Books</a></button>
-            <button type="submit">Edit Book</button>
-        </form>
-    <% }) %>
+    <div class="container d-inline-flex align-items-center justify-content-center">
+        <% data.forEach(function(details) { %>
+            <form action="/edit/<%= details._id %>" method="POST">
+                <h2>Edit Book</h2>
+                <div class="form-floating mb-3">
+                    <input type="text" id="floatingInput" class="form-control" value="<%= details.title %>" name="title"/>
+                    <label for="floatingInput" class="form-label">Book Title</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" id="floatingInput1" class="form-control" value="<%= details.author %>" name="author"/>
+                    <label for="floatingInput1" class="form-label">Book Author</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select name="status" id="floatingInput2" value="<%= details.status %>" class="form-select mb-3" style="width: 146px;" onchange="showRating('rating', this); showConclusionDate('currentDate',this);">
+                        <option value="want_to_read">Want to Read</option>
+                        <option value="reading">Reading</option>
+                        <option value="read">Read</option>
+                    </select>
+                    <label for="floatingInput2" class="form-label">Status</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" id="rating" class="form-control" placeholder="Rating" value="<%= details.rating %>" name="rating" min="1" max="5">
+                    <label id="hideLabel" class="form-label">Rating(1 to 5)</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" id="currentDate" class="form-control" name="conclusion" readonly/>
+                    <label id="hideLabel" class="form-label">Conclusion Date</label>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-outline-success">Edit</button>
+                    <a class="btn btn-outline-primary" href="/show-books">All Books</a>
+                </div>
+            </form>
+        <% }) %>
+    </div>
 
     <script type="text/javascript">
         function showRating(inputId, element)
         {
             document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
+            document.getElementById("hideLabel").style.display = element.value == "read" ? 'block' : 'none';
         }
         function showConclusionDate(inputId, element)
         {
@@ -48,8 +71,10 @@
                 const formattedToday = dd + '/' + mm + '/' + yyyy;
                 document.getElementById("currentDate").value = formattedToday.toString();
                 document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
+                document.getElementById("hideLabel").style.display = element.value == "read" ? 'block' : 'none';
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
