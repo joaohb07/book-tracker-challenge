@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Tracker</title>
+</head>
+<body>
+
+<h2>Books<h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>Author</td>
+                <td>Added Date</td>
+                <td>Status</td>
+                <td>Conclusion Date</td>
+                <td>Rating</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody>
+        <% data.forEach(function(details) { %>
+            <tr>
+                <td><%= details.title %></td>
+                <td><%= details.author %></td>
+                <td><%= details.added_date %></td>
+                <td><%= details.status %></td>
+                <td><%= details.conclusion %></td>
+                <td><%= details.rating %></td>
+                <td><a href="/edit/<%= details._id %>">Edit</a> | <a href="/delete/<%= details._id %>">Delete</a></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <button><a href="/">New Book</a></button>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #rating{ width: 135px; display: none; }
+        #currentDate{ width: 135px; display: none; }
+    </style>
+</head>
+<body>
+    <h2>Edit Book</h2>
+    <% data.forEach(function(details) { %>
+        <form action="/edit/<%= details._id %>" method="POST">
+            <input type="text" value="<%= details.title %>" name="title"/><br/>
+            <input type="text" value="<%= details.author %>" name="author"/><br/>
+            <select name="status" style="width: 146px;" onchange="showRating('rating', this); showConclusionDate('currentDate',this);">
+                <option value="want_to_read">Want to Read</option>
+                <option value="reading">Reading</option>
+                <option value="read">Read</option>
+            </select><br/>
+            <input type="number" id="rating" placeholder="Rating(1 to 5)" value="<%= details.rating %>" name="rating" min="1" max="5">
+            <input type="text" id="currentDate" name="conclusion" readonly="readonly"/>
+            <br/>
+            <button><a href="/show-books">All Books</a></button>
+            <button type="submit">Edit Book</button>
+        </form>
+    <% }) %>
+
+    <script type="text/javascript">
+        function showRating(inputId, element)
+        {
+            document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
+        }
+        function showConclusionDate(inputId, element)
+        {
+            if (element.value == "read"){
+                const today = new Date();
+                const yyyy = today.getFullYear();
+                let mm = today.getMonth() + 1; 
+                let dd = today.getDate();
+
+                if (dd < 10) dd = '0' + dd;
+                if (mm < 10) mm = '0' + mm;
+
+                const formattedToday = dd + '/' + mm + '/' + yyyy;
+                document.getElementById("currentDate").value = formattedToday.toString();
+                document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>

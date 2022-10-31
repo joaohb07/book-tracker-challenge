@@ -1,0 +1,32 @@
+{
+  "name": "book-tracker-challenge",
+  "version": "1.0.0",
+  "description": "Book Tracker Bruxoes Challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaohb07/book-tracker-challenge.git"
+  },
+  "keywords": [
+    "book-tracker-challenge"
+  ],
+  "author": "Joao Botelho",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaohb07/book-tracker-challenge/issues"
+  },
+  "homepage": "https://github.com/joaohb07/book-tracker-challenge#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "mongodb": "^4.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
