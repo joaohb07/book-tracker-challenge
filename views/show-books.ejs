@@ -12,10 +12,10 @@
 <body>
 
 <div class="container d-flex flex-column align-items-center justify-content-center">
-    <div class="row">
-        <div class="col">
-            <table class="table table-dark table-hover text-center">
-                <thead>
+    <div class="shadow-lg card bg-dark">
+        <div class="card-body">
+            <table class="table table-light table-borderless table-hover text-center">
+                <thead class="table-dark">
                     <tr>
                         <td>Title</td>
                         <td>Author</td>
@@ -35,17 +35,13 @@
                             <td><%= details.status %></td>
                             <td><%= details.conclusion %></td>
                             <td><%= details.rating %></td>
-                            <td><a class="btn btn-outline-light" href="/edit/<%= details._id %>">Edit</a>&nbsp;<a class="btn btn-outline-danger" href="/delete/<%= details._id %>">Delete</a></td>
+                            <td><a class="btn btn-outline-dark" href="/edit/<%= details._id %>">Edit</a>&nbsp;<a class="btn btn-outline-danger" href="/delete/<%= details._id %>">Delete</a></td>
                         </tr>
                     <% }) %>
                 </tbody>
             </table>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
             <div class="d-grid gap-2">
-                <a class="btn btn-outline-primary" href="/">Register new</a>
+                <a class="btn btn-primary" href="/">Register new</a>
             </div>
         </div>
     </div>

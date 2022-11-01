@@ -15,40 +15,44 @@
     </style>
 </head>
 <body>
-    <div class="container d-inline-flex align-items-center justify-content-center">
-        <% data.forEach(function(details) { %>
-            <form action="/edit/<%= details._id %>" method="POST">
-                <h2>Edit Book</h2>
-                <div class="form-floating mb-3">
-                    <input type="text" id="floatingInput" class="form-control" value="<%= details.title %>" name="title"/>
-                    <label for="floatingInput" class="form-label">Book Title</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" id="floatingInput1" class="form-control" value="<%= details.author %>" name="author"/>
-                    <label for="floatingInput1" class="form-label">Book Author</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="status" id="floatingInput2" value="<%= details.status %>" class="form-select mb-3" style="width: 146px;" onchange="showRating('rating', this); showConclusionDate('currentDate',this);">
-                        <option value="want_to_read">Want to Read</option>
-                        <option value="reading">Reading</option>
-                        <option value="read">Read</option>
-                    </select>
-                    <label for="floatingInput2" class="form-label">Status</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="number" id="rating" class="form-control" placeholder="Rating" value="<%= details.rating %>" name="rating" min="1" max="5">
-                    <label id="hideLabel" class="form-label">Rating(1 to 5)</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" id="currentDate" class="form-control" name="conclusion" readonly/>
-                    <label id="hideLabel" class="form-label">Conclusion Date</label>
-                </div>
-                <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-outline-success">Edit</button>
-                    <a class="btn btn-outline-primary" href="/show-books">All Books</a>
-                </div>
-            </form>
-        <% }) %>
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="card bg-dark" style="width: 500px;">
+            <div class="card-body">
+                <h2 class="card-title text-white">Edit Book</h2>
+                <% data.forEach(function(details) { %>
+                    <form action="/edit/<%= details._id %>" method="POST">
+                        <div class="form-floating mb-2">
+                            <input type="text" id="floatingInput" class="form-control" value="<%= details.title %>" name="title"/>
+                            <label for="floatingInput" class="form-label">Book Title</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" id="floatingInput1" class="form-control" value="<%= details.author %>" name="author"/>
+                            <label for="floatingInput1" class="form-label">Book Author</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <select name="status" id="floatingInput2" value="<%= details.status %>" class="form-select" onchange="showRating('rating', this); showConclusionDate('currentDate',this);">
+                                <option value="want_to_read">Want to Read</option>
+                                <option value="reading">Reading</option>
+                                <option value="read">Read</option>
+                            </select>
+                        </div>
+                        <label for="floatingInput2" class="form-label">Status</label>
+                        <div class="form-floating mb-2">
+                            <input type="number" id="rating" class="form-control" placeholder="Rating" value="<%= details.rating %>" name="rating" min="1" max="5">
+                            <label id="hideLabel" class="form-label">Rating(1 to 5)</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="text" id="currentDate" class="form-control" name="conclusion" readonly/>
+                            <label id="hideLabel" class="form-label" style="color: black;">Conclusion Date</label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-outline-success">Edit</button>
+                            <a class="btn btn-outline-primary" href="/show-books">All Books</a>
+                        </div>
+                    </form>
+                <% }) %>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
@@ -57,6 +61,7 @@
             document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
             document.getElementById("hideLabel").style.display = element.value == "read" ? 'block' : 'none';
         }
+
         function showConclusionDate(inputId, element)
         {
             if (element.value == "read"){
@@ -70,8 +75,8 @@
 
                 const formattedToday = dd + '/' + mm + '/' + yyyy;
                 document.getElementById("currentDate").value = formattedToday.toString();
-                document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
                 document.getElementById("hideLabel").style.display = element.value == "read" ? 'block' : 'none';
+                document.getElementById(inputId).style.display = element.value == "read" ? 'block' : 'none';
             }
         }
     </script>

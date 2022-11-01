@@ -14,24 +14,28 @@
 <body>
 
   <div class="container d-flex align-items-center justify-content-center">
-    <form action="/create" method="POST">
-      <h2>Register a new Book</h2>
-      <div class="form-floating mb-3">
-        <input type="text" id="floatingInput" class="form-control" name="title" placeholder="title">
-        <label for="floatingInput" class="form-label">Book Title</label>
+    <div class="card bg-dark" style="width: 500px;">
+      <div class="card-body">
+        <form action="/create" method="POST">
+          <h2 class="card-title text-white">Register a new Book</h2>
+          <div class="form-floating mb-3">
+            <input type="text" id="floatingInput" class="form-control" name="title" placeholder="title">
+            <label for="floatingInput" class="form-label">Book Title</label>
+          </div>
+          <div class="form-floating mb-3">
+            <input type="text" id="floatingInput1" class="form-control" name="author" placeholder="author">
+            <label for="floatingInput1" class="form-label">Book Author</label>
+          <div class="mb-3">
+            <input type="text" id="currentDate" name="added_date" readonly="readonly"/>
+            <input type="text" id="status" name="status" value="want_to_read" readonly="readonly"/>
+          </div>
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <a class="btn btn-primary" href="/show-books">All Books</a>
+          </div>
+        </form>
       </div>
-      <div class="form-floating mb-3">
-        <input type="text" id="floatingInput1" class="form-control" name="author" placeholder="author">
-        <label for="floatingInput1" class="form-label">Book Author</label>
-      <div class="mb-3">
-        <input type="text" id="currentDate" name="added_date" readonly="readonly"/>
-        <input type="text" id="status" name="status" value="want_to_read" readonly="readonly"/>
-      </div>
-      <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-outline-success">Submit</button>
-        <a class="btn btn-outline-primary" href="/show-books">All Books</a>
-      </div>
-    </form>
+    </div>
   </div>
 
     <script type="text/javascript">
